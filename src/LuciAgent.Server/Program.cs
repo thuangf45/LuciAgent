@@ -1,4 +1,4 @@
-using WorkerService1;
+using LuciAgent.Server;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<Worker>();

@@ -1,4 +1,4 @@
-namespace WorkerService1
+namespace LuciAgent.Server
 {
     public class Worker : BackgroundService
     {

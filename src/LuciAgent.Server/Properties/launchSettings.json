@@ -1,7 +1,7 @@
 ﻿{
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "WorkerService1": {
+    "LuciAgent.Server": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "environmentVariables": {

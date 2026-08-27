@@ -4,7 +4,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-WorkerService1-784d61f3-2579-4dfb-82c7-d4a40fefab8f</UserSecretsId>
+    <UserSecretsId>dotnet-LuciAgent.Server-366f0a46-72d0-487e-aaa5-486bf19532d5</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
