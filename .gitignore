@@ -1,0 +1,11 @@
+# .NET Build / Visual Studio files
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+project.assets.json
+*.nuget.g.props
+*.nuget.g.targets

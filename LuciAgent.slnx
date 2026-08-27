@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Client/">
+    <Project Path="src/LuciAgent.Client/LuciAgent.Client.Core/LuciAgent.Client.Core.csproj" Id="12f4422a-e2c0-44ce-9563-a1e035c7d075" />
+    <Project Path="src/LuciAgent.Client/LuciferAgent.Client.Console/LuciferAgent.Client.Console.csproj" Id="e6f2bcc9-9143-4b65-88e7-0e8510c33262" />
+  </Folder>
+  <Folder Name="/Server/">
+    <Project Path="src/LuciAgent.Server/WorkerService1/WorkerService1.csproj" Id="a4345a3b-af35-4202-8d6b-ad86db13c030" />
+  </Folder>
+</Solution>
