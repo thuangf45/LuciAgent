@@ -1,0 +1,102 @@
+[
+  {
+    "id": "sp001",
+    "name": "Apple iPhone 15 128GB",
+    "price": 18990000,
+    "stock": 25,
+    "rating": 4.8,
+    "category": "Điện thoại",
+    "brand": "Apple",
+    "imageUrl": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600"
+  },
+  {
+    "id": "sp002",
+    "name": "Samsung Galaxy S25 256GB",
+    "price": 21990000,
+    "stock": 18,
+    "rating": 4.7,
+    "category": "Điện thoại",
+    "brand": "Samsung",
+    "imageUrl": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=600"
+  },
+  {
+    "id": "sp003",
+    "name": "MacBook Air M4 13 inch",
+    "price": 29990000,
+    "stock": 12,
+    "rating": 4.9,
+    "category": "Laptop",
+    "brand": "Apple",
+    "imageUrl": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "sp004",
+    "name": "Dell XPS 13",
+    "price": 26990000,
+    "stock": 8,
+    "rating": 4.6,
+    "category": "Laptop",
+    "brand": "Dell",
+    "imageUrl": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"
+  },
+  {
+    "id": "sp005",
+    "name": "Sony WH-1000XM5",
+    "price": 7990000,
+    "stock": 35,
+    "rating": 4.8,
+    "category": "Tai nghe",
+    "brand": "Sony",
+    "imageUrl": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+  },
+  {
+    "id": "sp006",
+    "name": "AirPods Pro Gen 2",
+    "price": 5990000,
+    "stock": 42,
+    "rating": 4.7,
+    "category": "Tai nghe",
+    "brand": "Apple",
+    "imageUrl": "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=600"
+  },
+  {
+    "id": "sp007",
+    "name": "iPad Air M3",
+    "price": 17990000,
+    "stock": 20,
+    "rating": 4.8,
+    "category": "Tablet",
+    "brand": "Apple",
+    "imageUrl": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600"
+  },
+  {
+    "id": "sp008",
+    "name": "Samsung Galaxy Tab S10",
+    "price": 15990000,
+    "stock": 14,
+    "rating": 4.6,
+    "category": "Tablet",
+    "brand": "Samsung",
+    "imageUrl": "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=600"
+  },
+  {
+    "id": "sp009",
+    "name": "Logitech MX Master 3S",
+    "price": 2490000,
+    "stock": 60,
+    "rating": 4.9,
+    "category": "Phụ kiện",
+    "brand": "Logitech",
+    "imageUrl": "https://images.unsplash.com/photo-1527814050087-3793815479db?w=600"
+  },
+  {
+    "id": "sp010",
+    "name": "LG UltraWide 34 inch",
+    "price": 10990000,
+    "stock": 9,
+    "rating": 4.7,
+    "category": "Màn hình",
+    "brand": "LG",
+    "imageUrl": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+  }
+]

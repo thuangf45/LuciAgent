@@ -1,0 +1,15 @@
+﻿# Static web content
+WWW = Assets/wwwroot
+PORT = 23456
+
+# Database configuration
+DBHost = localhost
+DBPort = 1433
+DBUser = your_username
+DBPassword = your_password
+DBName = your_database_name
+DBTrustServerCertificate = true
+DBConnectTimeout = 30
+DBCommandTimeout = 30
+DBMaxPoolSize = 100
+DBAppName = LuciferCoreApp

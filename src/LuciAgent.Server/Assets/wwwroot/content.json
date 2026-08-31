@@ -1,0 +1,1519 @@
+{
+  "system": {
+    "version": "2.2.1",
+    "debug": true,
+    "versionCheckInterval": 2000,
+    "sw": {
+      "enabled": true,
+      "path": "luciacore.sw",
+      "cacheExtensions": [
+        ".html",
+        ".js",
+        ".css",
+        ".json",
+        ".svg",
+        ".png",
+        ".jpg",
+        ".jpeg"
+      ]
+    }
+  },
+  "pages": [
+    {
+      "name": "login",
+      "loading": "loading",
+      "layout": {
+        "type": "custom_form_login",
+        "content": "login_content"
+      }
+    },
+    {
+      "name": "signup",
+      "loading": "loading",
+      "layout": {
+        "type": "custom_form_signup",
+        "content": "signup_content"
+      }
+    },
+    {
+      "name": "forgot-password_step1",
+      "loading": "loading",
+      "layout": {
+        "type": "custom_forgot_password_step1",
+        "content": "forgot_password_step1_content"
+      }
+    },
+    {
+      "name": "forgot-password_step2",
+      "loading": "loading",
+      "layout": {
+        "type": "custom_forgot_password_step2",
+        "content": "forgot_password_step2_content"
+      }
+    },
+    {
+      "name": "home",
+      "loading": "loading",
+      "layout": {
+        "type": "custom_page",
+        "content": "template_page",
+        "props": {
+          "pageContent": [
+            {
+              "type": "custom_section",
+              "content": "home_hero_content"
+            },
+            {
+              "type": "custom_product_grid_section",
+              "content": "home_product_grid_content"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "product_detail",
+      "loading": "loading",
+      "layout": {
+        "type": "custom_page",
+        "content": "template_page",
+        "props": {
+          "pageContent": [
+            {
+              "type": "custom_product_detail_section",
+              "content": "product_detail_content",
+              "api": "/assets/data/products/products.json?filter=id=props:id",
+              "skeleton": {
+                "width": "100%",
+                "height": 120,
+                "minItems": 15
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "products",
+      "loading": "loading",
+      "layout": {
+        "type": "custom_page",
+        "content": "template_page",
+        "props": {
+          "pageContent": [
+            {
+              "type": "custom_section",
+              "content": "home_hero_content"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "orders",
+      "loading": "loading",
+      "layout": {
+        "type": "custom_page",
+        "content": "template_page",
+        "props": {
+          "pageContent": [
+            {
+              "type": "custom_section",
+              "content": "home_hero_content"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "analytics",
+      "loading": "loading",
+      "layout": {
+        "type": "custom_page",
+        "content": "template_page",
+        "props": {
+          "pageContent": [
+            {
+              "type": "custom_section",
+              "content": "home_hero_content"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "settings",
+      "loading": "loading",
+      "layout": {
+        "type": "custom_page",
+        "content": "template_page",
+        "props": {
+          "pageContent": [
+            {
+              "type": "custom_section",
+              "content": "home_hero_content"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "offline",
+      "loading": "loading",
+      "layout": {
+        "type": "custom_offline",
+        "content": "offline_content"
+      }
+    }
+  ],
+  "contents": [
+    {
+      "name": "template_page",
+      "props": {
+        "header": {
+          "type": "custom_header",
+          "content": "template_header"
+        },
+        "footer": {
+          "type": "custom_footer",
+          "content": "template_footer"
+        },
+        "sidebar": {
+          "type": "custom_sidebar",
+          "content": "template_sidebar"
+        }
+      }
+    },
+    {
+      "name": "template_header",
+      "props": {
+        "src": "https://picsum.photos/id/1005/100/100",
+        "title": "LuciaCore",
+        "action": "",
+        "placeholder": "Search...",
+        "list": [
+          {
+            "label": "[icon:Category]",
+            "action": "go::page::home",
+            "style": ""
+          },
+          {
+            "label": "[icon:Message-Circle]",
+            "action": "go::page::home",
+            "style": ""
+          },
+          {
+            "label": "[icon:Bell]",
+            "action": "go::page::inventory",
+            "style": ""
+          },
+          {
+            "label": "[icon:User-Circle]",
+            "action": "go::page::login",
+            "style": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "template_footer",
+      "props": {
+        "list": [
+          {
+            "label": "Services",
+            "children": [
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Consulting",
+                "action": "go::page::services/consulting"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Support",
+                "action": "go::page::services/support"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Customization",
+                "action": "go::page::services/custom"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Training",
+                "action": "go::page::services/training"
+              }
+            ]
+          },
+          {
+            "label": "Company",
+            "children": [
+              {
+                "type": "text",
+                "level": "span",
+                "label": "About Us",
+                "action": "go::page::company/about"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Careers",
+                "action": "go::page::company/careers"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Blog",
+                "action": "go::page::company/blog"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Press",
+                "action": "go::page::company/press"
+              }
+            ]
+          },
+          {
+            "label": "Support",
+            "children": [
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Help Center",
+                "action": "go::page::support/help"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Documentation",
+                "action": "go::page::support/docs"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Community Forum",
+                "action": "go::page::support/forum"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Report Issue",
+                "action": "go::page::support/report"
+              }
+            ]
+          },
+          {
+            "label": "Legal",
+            "children": [
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Privacy Policy",
+                "action": "go::page::legal/privacy"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Terms of Service",
+                "action": "go::page::legal/terms"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Cookie Policy",
+                "action": "go::page::legal/cookies"
+              }
+            ]
+          },
+          {
+            "label": "Contact",
+            "children": [
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Email: support@example.com",
+                "action": "go::mailto::support@example.com"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Phone: +1 234 567 890",
+                "action": "go::tel::+1234567890"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "Address: 123 Main Street",
+                "action": "go::new::https://maps.google.com/?q=123+Main+Street"
+              }
+            ]
+          },
+          {
+            "label": "Follow Us",
+            "children": [
+              {
+                "type": "text",
+                "level": "span",
+                "label": "[icon:Brand:Facebook] Facebook",
+                "action": "go::new::https://www.facebook.com"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "[icon:Brand:Linkedin] LinkedIn",
+                "action": "go::new::https://www.linkedin.com"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "[icon:Brand:Instagram] Instagram",
+                "action": "go::new::https://www.instagram.com"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "[icon:Brand:TikTok] TikTok",
+                "action": "go::new::https://www.tiktok.com"
+              },
+              {
+                "type": "text",
+                "level": "span",
+                "label": "[icon:Brand:Youtube] YouTube",
+                "action": "sys::toast::Go to YouTube |> wait::300 |> go::new::https://www.youtube.com"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "template_sidebar",
+      "props": {
+        "list": [
+          {
+            "icon": "[icon:Home]",
+            "label": "Home",
+            "action": "go::page::home"
+          },
+          {
+            "icon": "[icon:Box]",
+            "label": "Products",
+            "action": "go::page::products"
+          },
+          {
+            "icon": "[icon:Shopping-Cart]",
+            "label": "Orders",
+            "action": "go::page::orders"
+          },
+          {
+            "icon": "[icon:Chart-Bar]",
+            "label": "Analytics",
+            "action": "go::page::analytics"
+          },
+          {
+            "icon": "[icon:Settings]",
+            "label": "Settings",
+            "action": "go::page::settings"
+          }
+        ]
+      }
+    },
+    {
+      "name": "home_hero_content",
+      "props": {
+        "title": "Welcome to the home",
+        "subtitle": "Here you can manage your products, view orders, and analyze sales data.",
+        "children": [
+          {
+            "type": "text",
+            "level": "p",
+            "label": "Use the navigation menu to access different sections of the home and stay on top of your business performance."
+          }
+        ]
+      }
+    },
+    {
+      "name": "home_product_grid_content",
+      "props": {
+        "title": "Featured Products",
+        "subtitle": "Check out our featured products",
+        "api": "/assets/data/products/products.json?page=1&size=8",
+        "list": [],
+        "link": "Buy Now [icon:Shopping-Cart]",
+        "action": "go::page::product_detail"
+      }
+    },
+    {
+      "name": "product_detail_content",
+      "props": {
+        "title": "Product Details",
+        "subtitle": "Everything you need to know about this item",
+        "imageUrl": "",
+        "name": "",
+        "description": "",
+        "price": "",
+        "id": "",
+        "addToCartLabel": "Add to Cart",
+        "addToCartAction": "sys::toast::success::3000::Product added to cart!",
+        "buyLabel": "Buy with Voucher",
+        "buyAction": "sys::toast::success::3000::Buying product with ID: props:id"
+      }
+    },
+    {
+      "name": "login_content",
+      "props": {
+        "src": "https://picsum.photos/id/1005/100/100",
+        "title": "Welcome Back",
+        "subtitle": "Please login to your account",
+        "inputs": [
+          {
+            "label": "Email",
+            "placeholder": "name@mail.com",
+            "inputType": "text",
+            "icon": "[icon:Mail]",
+            "style": "",
+            "inputStyle": "",
+            "id": "email"
+          },
+          {
+            "label": "Password",
+            "placeholder": "Password",
+            "inputType": "password",
+            "icon": "[icon:Lock]",
+            "style": "",
+            "inputStyle": "",
+            "id": "password"
+          }
+        ],
+        "submitLabel": "Sign In",
+        "submitAction": "sys::toast::success::3000::Login successful! |> go::page::home",
+        "forgotLabel": "Forgot password?",
+        "forgotAction": "go::page::forgot-password_step1",
+        "dividerLevel": "span",
+        "dividerLabel": "Or",
+        "buttons": [
+          {
+            "label": "[icon:Brand:Google] Google",
+            "action": "sys::toast::success::3000::Login with Google |> go::page::home",
+            "style": ""
+          },
+          {
+            "label": "[icon:Brand:Apple] Apple",
+            "action": "sys::toast::success::3000::Login with Apple |> go::page::home",
+            "style": ""
+          }
+        ],
+        "buttonsStyle": "flex: 1;",
+        "prefixText": "Don't have an account?",
+        "prefixStyle": "",
+        "navigateText": "Sign Up",
+        "navigateStyle": "",
+        "navigateAction": "go::page::signup",
+        "termsLabel": "Terms of use & Conditions"
+      }
+    },
+    {
+      "name": "signup_content",
+      "props": {
+        "title": "Sign Up",
+        "inputs": [
+          {
+            "label": "Email",
+            "placeholder": "name@mail.com",
+            "inputType": "text",
+            "icon": "[icon:Mail]",
+            "style": "",
+            "inputStyle": ""
+          },
+          {
+            "label": "Password",
+            "placeholder": "Password",
+            "inputType": "password",
+            "icon": "[icon:Lock]",
+            "style": "",
+            "inputStyle": ""
+          },
+          {
+            "label": "Confirm Password",
+            "placeholder": "Confirm Password",
+            "inputType": "password",
+            "icon": "[icon:Lock]",
+            "style": "",
+            "inputStyle": ""
+          }
+        ],
+        "submitLabel": "Sign Up",
+        "submitAction": "go::page::home",
+        "prefixText": "Already have an account?",
+        "prefixStyle": "",
+        "navigateText": "Sign In",
+        "navigateStyle": "",
+        "navigateAction": "go::page::login"
+      }
+    },
+    {
+      "name": "forgot_password_step1_content",
+      "props": {
+        "title": "Forgot Password",
+        "subtitle": "Enter your email to receive OTP for password reset",
+        "iconStyle": "",
+        "icon": "[icon:Mail]",
+        "placeholder": "name@mail.com",
+        "inputType": "text",
+        "inputStyle": "",
+        "btnStyle": "",
+        "btnIcon": "[icon:Send]",
+        "btnPlaceholder": "Enter OTP",
+        "btnInputType": "text",
+        "btnInputStyle": "",
+        "btnLabel": "Get OTP",
+        "btnAction": "sys::toast::OTP sent to your email!",
+        "btnButtonStyle": "",
+        "submitLabel": "Reset Password",
+        "submitAction": "go::page::forgot-password_step2",
+        "prefixText": "Remember your password?",
+        "prefixStyle": "",
+        "navigateText": "Sign In",
+        "navigateStyle": "",
+        "navigateAction": "go::page::login"
+      }
+    },
+    {
+      "name": "forgot_password_step2_content",
+      "props": {
+        "title": "Reset Password",
+        "subtitle": "Enter your new password",
+        "inputs": [
+          {
+            "label": "New Password",
+            "placeholder": "New Password",
+            "inputType": "password",
+            "icon": "[icon:Lock]",
+            "style": "",
+            "inputStyle": ""
+          },
+          {
+            "label": "Confirm New Password",
+            "placeholder": "Confirm New Password",
+            "inputType": "password",
+            "icon": "[icon:Lock]",
+            "style": "",
+            "inputStyle": ""
+          }
+        ],
+        "submitLabel": "Reset Password",
+        "submitAction": "go::page::login"
+      }
+    },
+    {
+      "name": "offline_content",
+      "props": {
+        "label": "You are offline. Please check your internet connection."
+      }
+    }
+  ],
+  "components": [
+    {
+      "type": "row3",
+      "layout": {
+        "type": "row",
+        "style": "props:style;",
+        "children": [
+          {
+            "type": "row",
+            "style": "flex:1; justify-content: flex-start; min-width: 0;",
+            "children": [
+              {
+                "type": "props:left"
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "style": "flex: 1; justify-content: center;  min-width: 0;",
+            "children": [
+              {
+                "type": "props:center"
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "style": "flex:1; justify-content: flex-end; min-width: 0;",
+            "children": [
+              {
+                "type": "props:right"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "column3",
+      "layout": {
+        "type": "column",
+        "style": "props:style;",
+        "children": [
+          {
+            "type": "row",
+            "children": [
+              {
+                "type": "props:top"
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "style": "margin: auto;",
+            "children": [
+              {
+                "type": "props:center"
+              }
+            ]
+          },
+          {
+            "type": "row",
+            "children": [
+              {
+                "type": "props:bottom"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "row_center",
+      "layout": {
+        "type": "row3",
+        "props": {
+          "center": "props:content",
+          "style": "",
+          "left": "",
+          "right": ""
+        }
+      }
+    },
+    {
+      "type": "column_center",
+      "layout": {
+        "type": "column3",
+        "props": {
+          "center": "props:content",
+          "style": "",
+          "top": "",
+          "bottom": ""
+        }
+      }
+    },
+    {
+      "type": "center_center",
+      "layout": {
+        "type": "column_center",
+        "props": {
+          "content": {
+            "type": "row_center",
+            "props": {
+              "content": {
+                "type": "column",
+                "children": [
+                  {
+                    "type": "props:content"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "form",
+      "layout": {
+        "type": "card",
+        "id": "props:id",
+        "position": "center",
+        "style": "flex-grow: 0 !important; width: auto; min-width: 320px; height: auto; padding: 24px; gap: 16px; props:style;",
+        "children": [
+          {
+            "type": "column3",
+            "props": {
+              "style": "gap: 16px;",
+              "top": {
+                "type": "column",
+                "style": "gap: 16px;",
+                "children": "props:topChildren"
+              },
+              "center": {
+                "type": "column",
+                "style": "gap: 16px;",
+                "children": "props:centerChildren"
+              },
+              "bottom": {
+                "type": "column",
+                "style": "gap: 16px;",
+                "children": "props:bottomChildren"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "custom_text_navigate",
+      "layout": {
+        "type": "row",
+        "style": "gap: 5px; justify-content: center !important;",
+        "children": [
+          {
+            "type": "text",
+            "level": "span",
+            "label": "props:prefixText",
+            "style": "font-size: 0.95rem; color: #8B8E98; props:prefixStyle;"
+          },
+          {
+            "type": "text",
+            "level": "span",
+            "label": "props:navigateText",
+            "style": "font-size: 0.95rem; color: #1877F2; text-decoration: underline; props:navigateStyle;",
+            "action": "props:action"
+          }
+        ]
+      }
+    },
+    {
+      "type": "custom_search_input",
+      "layout": {
+        "type": "custom_input_icon",
+        "props": {
+          "id": "props:id",
+          "style": "props:style",
+          "icon": "[icon:Search]",
+          "placeholder": "props:placeholder",
+          "inputType": "text",
+          "inputStyle": "border-radius: 56px; width: 100%; @media (max-width: 560px) { display: none !important; }"
+        }
+      }
+    },
+    {
+      "type": "custom_button_icon",
+      "layout": {
+        "type": "button",
+        "label": "props:label",
+        "action": "props:action",
+        "style": "background: #f3f4f6; font-size: 1.3rem; color: black; padding: 8px; border-radius: 32px; &:active{background-color: #e5e7eb;}; &:hover{background-color: gray;}; props:style;"
+      }
+    },
+    {
+      "type": "custom_input_icon",
+      "layout": {
+        "type": "row",
+        "style": "position: relative; props:style;",
+        "children": [
+          {
+            "type": "text",
+            "level": "span",
+            "label": "props:icon",
+            "style": "position: absolute; top: 50%; left: 14px; transform: translateY(-50%); font-size: 1.3rem; pointer-events: none;"
+          },
+          {
+            "type": "input",
+            "id": "props:id",
+            "placeholder": "props:placeholder",
+            "inputType": "props:inputType",
+            "style": "padding: 10px 14px 10px 48px !important; props:inputStyle;"
+          }
+        ]
+      }
+    },
+    {
+      "type": "custom_input_button",
+      "layout": {
+        "type": "row",
+        "style": "gap: 10px; props:style;",
+        "children": [
+          {
+            "type": "custom_input_icon",
+            "props": {
+              "style": "props:style",
+              "icon": "props:icon",
+              "id": "props:id",
+              "placeholder": "props:placeholder",
+              "inputType": "props:inputType",
+              "inputStyle": "props:inputStyle"
+            }
+          },
+          {
+            "type": "button",
+            "label": "props:label",
+            "action": "props:action",
+            "style": "flex-shrink: 0; props:buttonStyle;"
+          }
+        ]
+      }
+    },
+    {
+      "type": "custom_inputs",
+      "layout": {
+        "type": "column",
+        "style": "gap: 5px;",
+        "loop": "props:list",
+        "children": [
+          {
+            "type": "text",
+            "label": "item:label",
+            "style": "font-size: 0.875rem; font-weight: 600;"
+          },
+          {
+            "type": "custom_input_icon",
+            "props": {
+              "style": "item:style",
+              "icon": "item:icon",
+              "id": "item:id",
+              "placeholder": "item:placeholder",
+              "inputType": "item:inputType",
+              "inputStyle": "item:inputStyle"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "custom_title_subtitle",
+      "layout": {
+        "type": "column",
+        "style": "gap: 10px; text-align: center;",
+        "children": [
+          {
+            "type": "text",
+            "level": "h2",
+            "label": "props:title"
+          },
+          {
+            "type": "text",
+            "level": "span",
+            "label": "props:subtitle",
+            "style": "color: #8B8E98;"
+          }
+        ]
+      }
+    },
+    {
+      "type": "custom_buttons",
+      "layout": {
+        "type": "row",
+        "style": "gap: 10px;",
+        "loop": "props:list",
+        "children": [
+          {
+            "type": "button",
+            "label": "item:label",
+            "action": "item:action",
+            "style": "props:buttonStyle"
+          }
+        ]
+      }
+    },
+    {
+      "type": "custom_divider",
+      "layout": {
+        "type": "row",
+        "style": "gap: 10px;",
+        "children": [
+          {
+            "type": "divider"
+          },
+          {
+            "type": "text",
+            "level": "props:level",
+            "label": "props:label"
+          },
+          {
+            "type": "divider"
+          }
+        ]
+      }
+    },
+    {
+      "type": "custom_product_grid",
+      "layout": {
+        "type": "grid",
+        "loop": "props:list",
+        "children": [
+          {
+            "type": "card",
+            "id": "item:id",
+            "style": "padding: 16px; gap: 6px;",
+            "action": "props:action",
+            "children": [
+              {
+                "type": "image",
+                "src": "item:imageUrl",
+                "style": "aspect-ratio: 16 / 9;"
+              },
+              {
+                "type": "text",
+                "level": "p",
+                "style": "font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;",
+                "label": "item:name"
+              },
+              {
+                "type": "row",
+                "style": "gap: 8px; justify-content: flex-start;",
+                "children": [
+                  {
+                    "type": "text",
+                    "level": "span",
+                    "style": "text-decoration: line-through;",
+                    "label": "item:price"
+                  },
+                  {
+                    "type": "badge",
+                    "label": "item:rating",
+                    "style": "background-color: #FBBF24; color: black;"
+                  },
+                  {
+                    "type": "badge",
+                    "label": "item:badgeLabel",
+                    "style": "background-color: #EF4444; color: white;"
+                  }
+                ]
+              },
+              {
+                "type": "row3",
+                "props": {
+                  "style": "",
+                  "left": {
+                    "type": "text",
+                    "level": "h3",
+                    "style": "color: #EF4444;",
+                    "label": "item:price"
+                  },
+                  "center": {},
+                  "right": {
+                    "type": "link",
+                    "label": "props:link",
+                    "style": "color: #1877F2; white-space: nowrap;"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "custom_header",
+      "layout": {
+        "type": "row3",
+        "props": {
+          "id": "global_main_header",
+          "style": "position: sticky; top: 0; z-index: 1000; min-height: 56px; background-color: #ffffff; border-bottom: 1px solid #e5e7eb; padding: 0 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);",
+          "left": {
+            "type": "row",
+            "style": "gap: 12px;",
+            "children": [
+              {
+                "type": "image",
+                "src": "props:src",
+                "action": "props:action",
+                "style": "width: 36px; height: 36px; border-radius: 8px; object-fit: cover;"
+              },
+              {
+                "type": "text",
+                "level": "h2",
+                "label": "props:title",
+                "style": "font-size: 1.25rem; font-weight: 600; word-break: normal;"
+              }
+            ]
+          },
+          "center": {
+            "type": "custom_search_input",
+            "props": {
+              "style": "@media (max-width: 768px) { display: none !important; };",
+              "placeholder": "props:placeholder"
+            }
+          },
+          "right": {
+            "type": "row",
+            "style": "gap: 12px; justify-content: flex-end;",
+            "loop": "props:list",
+            "children": [
+              {
+                "type": "custom_button_icon",
+                "props": {
+                  "label": "item:label",
+                  "action": "item:action",
+                  "style": "item:style"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "custom_footer",
+      "layout": {
+        "type": "row",
+        "id": "global_main_footer",
+        "style": "border-top: 1px solid #e5e7eb; justify-content: center; padding: 40px 24px; background-color: #f3f4f6;",
+        "children": [
+          {
+            "type": "grid",
+            "style": "max-width: 1200px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 40px;",
+            "loop": "props:list",
+            "children": [
+              {
+                "type": "column",
+                "style": "gap: 12px;",
+                "children": [
+                  {
+                    "type": "text",
+                    "level": "p",
+                    "style": "font-weight: 600;",
+                    "label": "item:label"
+                  },
+                  {
+                    "type": "column",
+                    "style": "gap: 8px;",
+                    "children": "item:children"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "custom_section",
+      "layout": {
+        "type": "card",
+        "id": "props:id",
+        "children": [
+          {
+            "type": "custom_title_subtitle",
+            "props": {
+              "title": "props:title",
+              "subtitle": "props:subtitle"
+            }
+          },
+          {
+            "type": "column",
+            "children": "props:children"
+          }
+        ]
+      }
+    },
+    {
+      "type": "custom_sidebar",
+      "layout": {
+        "type": "column",
+        "style": "padding: 24px; display: block;",
+        "children": [
+          {
+            "type": "column",
+            "loop": "props:list",
+            "children": [
+              {
+                "type": "row",
+                "style": "padding: 10px; gap: 12px; &:hover{background-color: #f0f0f0; border-radius: 4px; cursor: pointer;};",
+                "action": "item:action",
+                "children": [
+                  {
+                    "type": "text",
+                    "label": "item:icon",
+                    "style": "font-size: 1.3rem;"
+                  },
+                  {
+                    "type": "text",
+                    "label": "item:label",
+                    "style": "font-weight: 600;"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "custom_product_grid_section",
+      "layout": {
+        "type": "custom_section",
+        "props": {
+          "id": "props:id",
+          "title": "props:title",
+          "subtitle": "props:subtitle",
+          "children": [
+            {
+              "type": "custom_product_grid",
+              "api": "props:api",
+              "skeleton": {
+                "width": "100%",
+                "height": 120,
+                "minItems": 10
+              },
+              "props": {
+                "list": "props:list",
+                "action": "props:action"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "custom_product_detail_section",
+      "layout": {
+        "type": "custom_section",
+        "props": {
+          "id": "props:id",
+          "title": "props:title",
+          "subtitle": "props:subtitle",
+          "children": [
+            {
+              "type": "row",
+              "style": "gap: 48px; @media(max-width: 768px){ flex-direction: column; gap: 24px; };",
+              "children": [
+                {
+                  "type": "image",
+                  "src": "props:imageUrl",
+                  "style": "width: 560px; aspect-ratio: 3 / 2; border-radius: 8px; @media(max-width: 1200px){ width: 400px; };"
+                },
+                {
+                  "type": "column",
+                  "style": "gap: 6px; width: 100%; ",
+                  "children": [
+                    {
+                      "type": "text",
+                      "level": "h2",
+                      "label": "props:name"
+                    },
+                    {
+                      "type": "text",
+                      "level": "p",
+                      "style": "word-break: normal;",
+                      "label": "props:description"
+                    },
+                    {
+                      "type": "text",
+                      "level": "h3",
+                      "label": "props:price",
+                      "style": "color:red;"
+                    },
+                    {
+                      "type": "row",
+                      "style": "gap: 12px; @media(max-width: 768px){  justify-content: right; }; ",
+                      "children": [
+                        {
+                          "type": "button",
+                          "style": "word-break: normal;  @media(min-width: 768px){ width: 200px };",
+                          "label": "props:addToCartLabel",
+                          "action": "props:addToCartAction"
+                        },
+                        {
+                          "type": "button",
+                          "style": "word-break: normal; @media(min-width: 768px){ width: 200px; };",
+                          "label": "props:buyLabel",
+                          "action": "props:buyAction"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "custom_page",
+      "layout": [
+        {
+          "type": "props:header"
+        },
+        {
+          "type": "row",
+          "style": "align-items: flex-start;",
+          "children": [
+            {
+              "type": "column",
+              "position": "sticky",
+              "id": "global_main_sidebar",
+              "style": "flex-basis: auto; min-width: 240px; max-width: 240px; top: 56px; height: calc(100vh - 56px); overflow-y: auto; @media(max-width: 1024px){ display: none; };",
+              "children": [
+                {
+                  "type": "props:sidebar"
+                }
+              ]
+            },
+            {
+              "type": "column",
+              "style": " gap:24px; padding: 24px 40px;",
+              "loop": "props:pageContent",
+              "children": [
+                {
+                  "type": "item:type",
+                  "content": "item:content",
+                  "props": "item:props",
+                  "api": "item:api",
+                  "skeleton": "item:skeleton"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "props:footer"
+        }
+      ]
+    },
+    {
+      "type": "custom_form_login",
+      "layout": {
+        "type": "form",
+        "props": {
+          "id": "login_form_body",
+          "style": "min-width: 420px;",
+          "topChildren": [
+            {
+              "type": "row_center",
+              "props": {
+                "content": {
+                  "type": "image",
+                  "src": "props:src",
+                  "style": "max-width: 60px; border-radius: 12px; object-fit: cover;"
+                }
+              }
+            },
+            {
+              "type": "custom_title_subtitle",
+              "props": {
+                "title": "props:title",
+                "subtitle": "props:subtitle"
+              }
+            }
+          ],
+          "centerChildren": [
+            {
+              "type": "custom_inputs",
+              "props": {
+                "list": "props:inputs"
+              }
+            },
+            {
+              "type": "button",
+              "label": "props:submitLabel",
+              "action": "props:submitAction"
+            }
+          ],
+          "bottomChildren": [
+            {
+              "type": "text",
+              "level": "span",
+              "label": "props:forgotLabel",
+              "style": "text-align: center;",
+              "action": "props:forgotAction"
+            },
+            {
+              "type": "custom_divider",
+              "props": {
+                "level": "props:dividerLevel",
+                "label": "props:dividerLabel"
+              }
+            },
+            {
+              "type": "custom_buttons",
+              "props": {
+                "list": "props:buttons",
+                "buttonStyle": "props:buttonsStyle"
+              }
+            },
+            {
+              "type": "custom_text_navigate",
+              "props": {
+                "prefixText": "props:prefixText",
+                "prefixStyle": "props:prefixStyle",
+                "navigateText": "props:navigateText",
+                "navigateStyle": "props:navigateStyle",
+                "action": "props:navigateAction"
+              }
+            },
+            {
+              "type": "text",
+              "level": "p",
+              "label": "props:termsLabel",
+              "style": "font-size: 0.75rem; color: #8B8E98; text-decoration: underline; text-align: center;"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "custom_form_signup",
+      "layout": {
+        "type": "form",
+        "id": "signup_form_body",
+        "props": {
+          "style": "min-width: 420px;",
+          "topChildren": [
+            {
+              "type": "row_center",
+              "props": {
+                "content": {
+                  "type": "text",
+                  "level": "h2",
+                  "label": "props:title",
+                  "style": "text-align: center;"
+                }
+              }
+            }
+          ],
+          "centerChildren": [
+            {
+              "type": "custom_inputs",
+              "props": {
+                "list": "props:inputs"
+              }
+            },
+            {
+              "type": "button",
+              "label": "props:submitLabel",
+              "action": "props:submitAction"
+            }
+          ],
+          "bottomChildren": [
+            {
+              "type": "custom_text_navigate",
+              "props": {
+                "prefixText": "props:prefixText",
+                "prefixStyle": "props:prefixStyle",
+                "navigateText": "props:navigateText",
+                "navigateStyle": "props:navigateStyle",
+                "action": "props:navigateAction"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "custom_forgot_password_step1",
+      "layout": {
+        "type": "form",
+        "id": "forgot_password_form_body",
+        "props": {
+          "style": "min-width: 420px;",
+          "topChildren": [
+            {
+              "type": "custom_title_subtitle",
+              "props": {
+                "title": "props:title",
+                "subtitle": "props:subtitle"
+              }
+            }
+          ],
+          "centerChildren": [
+            {
+              "type": "custom_input_icon",
+              "props": {
+                "style": "props:iconStyle",
+                "icon": "props:icon",
+                "id": "props:id",
+                "placeholder": "props:placeholder",
+                "inputType": "props:inputType",
+                "inputStyle": "props:inputStyle"
+              }
+            },
+            {
+              "type": "custom_input_button",
+              "props": {
+                "style": "props:btnStyle",
+                "icon": "props:btnIcon",
+                "placeholder": "props:btnPlaceholder",
+                "inputType": "props:btnInputType",
+                "inputStyle": "props:btnInputStyle",
+                "label": "props:btnLabel",
+                "action": "props:btnAction",
+                "buttonStyle": "props:btnButtonStyle"
+              }
+            },
+            {
+              "type": "button",
+              "label": "props:submitLabel",
+              "action": "props:submitAction"
+            }
+          ],
+          "bottomChildren": [
+            {
+              "type": "custom_text_navigate",
+              "props": {
+                "prefixText": "props:prefixText",
+                "prefixStyle": "props:prefixStyle",
+                "navigateText": "props:navigateText",
+                "navigateStyle": "props:navigateStyle",
+                "action": "props:navigateAction"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "custom_forgot_password_step2",
+      "layout": {
+        "type": "form",
+        "id": "forgot_password_step2_form_body",
+        "props": {
+          "style": "min-width: 420px;",
+          "topChildren": [
+            {
+              "type": "custom_title_subtitle",
+              "props": {
+                "title": "props:title",
+                "subtitle": "props:subtitle"
+              }
+            }
+          ],
+          "centerChildren": [
+            {
+              "type": "custom_inputs",
+              "props": {
+                "list": "props:inputs"
+              }
+            },
+            {
+              "type": "button",
+              "label": "props:submitLabel",
+              "action": "props:submitAction"
+            }
+          ],
+          "bottomChildren": []
+        }
+      }
+    },
+    {
+      "type": "custom_offline",
+      "layout": {
+        "type": "row",
+        "style": "justify-content: center; align-items: center; height: 100vh; background-color: #f3f4f6;",
+        "children": [
+          {
+            "type": "text",
+            "level": "h2",
+            "label": "props:label",
+            "style": "color: #8B8E98;"
+          }
+        ]
+      }
+    }
+  ]
+}
