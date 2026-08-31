@@ -10,4 +10,8 @@
 		<PackageReference Include="LuciferCore" Version="5.30.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Service\" />
+	</ItemGroup>
+
 </Project>

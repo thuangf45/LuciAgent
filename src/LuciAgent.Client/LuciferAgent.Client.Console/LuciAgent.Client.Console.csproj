@@ -13,4 +13,8 @@
 		</Content>
 	</ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\LuciAgent.Client.Core\LuciAgent.Client.Core.csproj" />
+	</ItemGroup>
+
 </Project>
