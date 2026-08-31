@@ -6,10 +6,10 @@ using System.Runtime.CompilerServices;
 
 namespace LuciAgent.Client.Core.Core;
 
-public class AppSession : WsSession
+public class AgentSession : WsSession
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public AppSession(AppServer server) : base(server)
+    public AgentSession(AgentServer server) : base(server)
     {
 
     }

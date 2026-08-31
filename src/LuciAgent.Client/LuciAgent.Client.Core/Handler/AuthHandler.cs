@@ -22,7 +22,7 @@ public class AuthHandler : RouteHandler
 
     [HttpPost("/login")]
     [Log]
-    private void HandleLogin([Session] AppSession session, [Data] RequestModel request)
+    private void HandleLogin([Session] AgentSession session, [Data] RequestModel request)
     {
         using var response = _authService.Login(session, request);
         session.SendResponseAsync(response);
@@ -30,7 +30,7 @@ public class AuthHandler : RouteHandler
 
     [HttpPost("/register")]
     [Log]
-    private void HandleRegister([Session] AppSession session, [Data] RequestModel request)
+    private void HandleRegister([Session] AgentSession session, [Data] RequestModel request)
     {
         using var response = _authService.Register(session, request);
         session.SendResponseAsync(response);
@@ -38,7 +38,7 @@ public class AuthHandler : RouteHandler
 
     [HttpPost("/logout")]
     [Log]
-    private void HandleLogout([Session] AppSession session, [Data] RequestModel request)
+    private void HandleLogout([Session] AgentSession session, [Data] RequestModel request)
     {
         using var response = _authService.Logout(session, request);
         session.SendResponseAsync(response);

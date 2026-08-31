@@ -11,7 +11,7 @@ namespace LuciAgent.Client.Core.Handler;
 public class HomeHandler : RouteHandler
 {
     [HttpGet("/ping")]
-    private void Ping([Session] AppSession session, [Data] RequestModel request)
+    private void Ping([Session] AgentSession session, [Data] RequestModel request)
     {
         // Build a custom response using the MakeCustomResponse method
         using var response = Lucifer.Rent<ResponseModel>().MakeCustomResponse<char, char, char>

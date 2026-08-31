@@ -7,10 +7,10 @@ using System.Runtime.CompilerServices;
 namespace LuciAgent.Client.Core.Core;
 
 [Server("App Server", 8080)]
-public class AppServer : WsServer
+public class AgentServer : WsServer
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public AppServer(int port) : base(IPAddress.Any, AppPort != -1 ? AppPort : port)
+    public AgentServer(int port) : base(IPAddress.Any, AppPort != -1 ? AppPort : port)
     {
         ServerInfo.Options.OptionDualMode = true;
         ServerInfo.Options.OptionNoDelay = true;
@@ -29,7 +29,7 @@ public class AppServer : WsServer
         };
     }
 
-    protected override AppSession CreateSession() => new(this);
+    protected override AgentSession CreateSession() => new(this);
 
     [Config("WWW")]
     private static string StaticPath { get; set; } = string.Empty;

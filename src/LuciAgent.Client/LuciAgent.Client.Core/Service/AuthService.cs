@@ -10,7 +10,7 @@ namespace LuciAgent.Client.Core.Service;
 public class AuthService
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public ResponseModel Login(AppSession session, RequestModel request)
+    public ResponseModel Login(AgentSession session, RequestModel request)
     {
         // Create a response model
         var response = Lucifer.Rent<ResponseModel>();
@@ -22,7 +22,7 @@ public class AuthService
         return response;
     }
 
-    public ResponseModel Register(AppSession session, RequestModel request)
+    public ResponseModel Register(AgentSession session, RequestModel request)
     {
         // Create a response model
         var response = Lucifer.Rent<ResponseModel>();
@@ -35,7 +35,7 @@ public class AuthService
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public ResponseModel Logout(AppSession session, RequestModel request)
+    public ResponseModel Logout(AgentSession session, RequestModel request)
     {
         // Create a response model
         var response = Lucifer.Rent<ResponseModel>();
