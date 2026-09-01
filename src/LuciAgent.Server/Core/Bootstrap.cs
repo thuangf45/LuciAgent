@@ -9,7 +9,7 @@ namespace LuciAgent.Server.Core;
 
 public static class Bootstrap
 {
-    [ConsoleCommand("init", "Initialize the app server.")]
+    [Bootstrap]
     internal static void Initialize()
     {
         Lucifer.SetModelT<DbContext, AppDBContext>();

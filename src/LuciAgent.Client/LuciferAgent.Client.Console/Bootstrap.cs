@@ -2,7 +2,7 @@
 
 namespace LuciAgent.Client.Console;
 
-public static class Boot
+public static class Bootstrap
 {
     [Bootstrap]
     internal static void Initialize()
