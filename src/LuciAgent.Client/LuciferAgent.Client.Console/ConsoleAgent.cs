@@ -7,13 +7,8 @@ namespace LuciAgent.Client.Console;
 [Singleton(ServiceType = typeof(AgentBase), Order = 1)]
 public class ConsoleAgent : AgentBase
 {
-    public ConsoleAgent() : base(new AgentClient("127.0.0.1", 12345))
+    public ConsoleAgent() : base(new AgentClient("lucifervn.org"))
     {
-        System.Console.WriteLine("ConsoleAgent initialized.");
-    }
 
-    public override AgentIdentity GetIdentity()
-    {
-        throw new NotImplementedException();
     }
 }

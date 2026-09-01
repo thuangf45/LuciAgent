@@ -11,7 +11,6 @@ public class AgentService
     public AgentService(AgentBase agent)
     {
         _agent = agent;
-        Console.WriteLine("AgentService initialized.");
     }
 
     public void JoinNetwork(ResponseModel response)

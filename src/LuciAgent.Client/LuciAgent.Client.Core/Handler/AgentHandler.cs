@@ -14,7 +14,6 @@ public class AgentHandler : RouteHandler
     public AgentHandler(AgentService agentService)
     {
         _agentService = agentService;
-        Console.WriteLine("AgentHandler initialized.");
     }
 
     [HttpPost("join")]
