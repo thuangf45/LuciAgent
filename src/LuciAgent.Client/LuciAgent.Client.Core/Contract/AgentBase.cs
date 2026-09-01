@@ -9,11 +9,11 @@ public abstract class AgentBase
     public AgentBase(AgentClient client)
     {
         _client = client;
-        EnsureConnected();
     }
+
     private readonly AgentClient _client;
 
-    public readonly Dictionary<AgentIdentity, bool> OtherAgents = new();
+    public readonly Dictionary<AgentIdentity, bool> OtherAgents = [];
     public abstract AgentIdentity GetIdentity();
 
     public virtual void JoinNetwork()
@@ -21,7 +21,8 @@ public abstract class AgentBase
         var identity = GetIdentity();
         EnsureConnected();
 
-        _client.SendAsync<byte>(identity.Buffer!);
+        using var request = Rent<RequestModel>();
+        request.MakePostRequest<byte, byte>("/v1/api/agent/join"u8, identity.Buffer!);
     }
 
     private void EnsureConnected()
