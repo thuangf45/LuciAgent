@@ -1,5 +1,4 @@
-﻿using LuciAgent.Client.Core.Contract;
-using LuciferCore.Attributes;
+﻿using LuciferCore.Attributes;
 using LuciferCore.Model;
 
 namespace LuciAgent.Client.Core.Service;
@@ -15,7 +14,7 @@ public class AgentService
 
     public void JoinNetwork(ResponseModel response)
     {
-        _agent.JoinNetwork();
+        //_agent.JoinNetwork();
     }
 
 }
