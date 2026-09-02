@@ -10,6 +10,7 @@ namespace LuciAgent.Server.Handler;
 [Handler("v1", "/api")]
 public class HomeHandler : RouteHandler
 {
+
     [HttpGet("/ping")]
     private void Ping([Session] AppSession session, [Data] RequestModel request)
     {

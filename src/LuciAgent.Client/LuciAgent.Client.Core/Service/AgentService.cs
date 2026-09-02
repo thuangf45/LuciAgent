@@ -1,4 +1,5 @@
-﻿using LuciferCore.Attributes;
+﻿using LuciAgent.Client.Core.Contract;
+using LuciferCore.Attributes;
 using LuciferCore.Model;
 
 namespace LuciAgent.Client.Core.Service;

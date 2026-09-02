@@ -1,6 +1,4 @@
-﻿using LuciAgent.Server.Contract;
-using LuciAgent.Server.Database;
-using LuciAgent.Server.Service;
+﻿using LuciAgent.Server.Database;
 using LuciferCore.Attributes;
 using LuciferCore.Main;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +27,5 @@ public static class Bootstrap
             return optionsBuilder.Options;
         });
 
-        Lucifer.SetModelI<IPayment, PayPalPay>();
     }
 }

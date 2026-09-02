@@ -1,4 +1,4 @@
-﻿using LuciAgent.Client.Core;
+﻿using LuciAgent.Client.Core.Contract;
 
 var agent = GetModelI<AgentBase>();
 
