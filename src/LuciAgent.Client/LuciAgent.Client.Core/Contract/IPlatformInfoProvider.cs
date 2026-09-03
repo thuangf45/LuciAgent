@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using LuciferCore.Attributes;
+using System.Diagnostics;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
@@ -17,15 +18,16 @@ public interface IPlatformInfoProvider
     string GetPersistentAgentId(); // Persisted ID per app install
 }
 
+[Singleton(ServiceType = typeof(IPlatformInfoProvider), Order = 0)]
 public sealed class DefaultPlatformInfoProvider : IPlatformInfoProvider
 {
     private readonly string _agentIdPath;
     private readonly object _idLock = new();
     private string? _cachedAgentGuid;
 
-    public DefaultPlatformInfoProvider(string agentIdPath)
+    public DefaultPlatformInfoProvider()
     {
-        _agentIdPath = NormalizeAgentIdPath(agentIdPath);
+        _agentIdPath = NormalizeAgentIdPath("LuciAgent");
     }
 
     public string GetHostName()
