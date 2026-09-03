@@ -9,7 +9,7 @@
 
 
 	<ItemGroup>
-		<PackageReference Include="LuciferCore" Version="5.33.0" />
+		<PackageReference Include="LuciferCore" Version="5.34.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
 	</ItemGroup>
 
