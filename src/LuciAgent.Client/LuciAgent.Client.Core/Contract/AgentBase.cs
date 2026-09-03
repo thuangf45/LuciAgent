@@ -1,5 +1,4 @@
-﻿using LuciAgent.Client.Core.Core;
-using LuciAgent.Client.Core.Model;
+﻿using LuciAgent.Client.Core.Model;
 using LuciferCore.Model;
 using System.Net;
 using System.Text;
@@ -8,13 +7,11 @@ namespace LuciAgent.Client.Core.Contract;
 
 public abstract class AgentBase
 {
-    private readonly AgentClient _client;
     private readonly IPlatformInfoProvider _platform;
     private static readonly HttpClient _http = new() { Timeout = TimeSpan.FromSeconds(3) };
 
-    protected AgentBase(AgentClient client, IPlatformInfoProvider platform)
+    protected AgentBase(IPlatformInfoProvider platform)
     {
-        _client = client;
         _platform = platform;
     }
 
@@ -68,20 +65,15 @@ public abstract class AgentBase
     public virtual async Task JoinNetworkAsync(CancellationToken ct = default)
     {
         var identity = await GetIdentityAsync(ct).ConfigureAwait(false);
-        await EnsureConnectedAsync(ct).ConfigureAwait(false);
 
         using var request = Rent<RequestModel>();
         request.MakePostRequest<byte, byte>("/v1/api/agent/join"u8, identity.Buffer!);
+
+        LuciferCore.NetCoreServer.Client.HttpClient.SendPostRequest<byte, byte>(
+            "/v1/api/agent/join"u8, identity.Buffer!, (response) =>
+            {
+                // Handle response
+            });
     }
 
-    private async Task EnsureConnectedAsync(CancellationToken ct)
-    {
-        for (int i = 0; i < 5 && !_client.IsConnected; i++)
-        {
-            ct.ThrowIfCancellationRequested();
-            _client.Connect();
-            if (_client.IsConnected) break;
-            await Task.Delay(500 * (i + 1), ct).ConfigureAwait(false);
-        }
-    }
 }
