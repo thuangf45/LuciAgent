@@ -59,7 +59,7 @@ public class AgentSession : WsSession
     protected override void OnConnected()
     {
         base.OnConnected();
-        Info<char>(this, $"[{SessionInfo.Id}]: connected");
+        Info<char>($"[{SessionInfo.Id}]: connected", this);
     }
 
     /// <summary>
@@ -70,7 +70,7 @@ public class AgentSession : WsSession
     protected override void OnDisconnected()
     {
         base.OnDisconnected();
-        Info<char>(this, $"[{SessionInfo.Id}]: disconnected");
+        Info<char>($"[{SessionInfo.Id}]: disconnected", this);
     }
 
     /// <summary>
@@ -82,6 +82,6 @@ public class AgentSession : WsSession
     protected override void OnError(SocketError error)
     {
         base.OnError(error);
-        Error<char>(this, $"[{SessionInfo.Id}]: error: {error}");
+        Error<char>($"[{SessionInfo.Id}]: error: {error}", this);
     }
 }

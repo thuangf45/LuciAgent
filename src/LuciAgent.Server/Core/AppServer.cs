@@ -43,8 +43,8 @@ public class AppServer : WsServer
 
     protected override void OnStarted()
     {
-        Info<char>(this, $"Started successfully and listening on {Endpoint}");
-        Info<char>(this, $"LAN URL: {UrlLocal}");
-        Info<char>(this, $"Localhost URL: http://localhost:{ServerInfo.Port}");
+        Info<char>($"Started successfully and listening on {Endpoint}", this);
+        Info<char>($"LAN URL: {UrlLocal}", this);
+        Info<char>($"Localhost URL: http://localhost:{ServerInfo.Port}", this);
     }
 }
