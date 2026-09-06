@@ -9,15 +9,12 @@ namespace LuciAgent.Client.Core.Skills;
 
 public static class NetworkSkills
 {
-    // ==========================================
-    // ICMP PING
-    // ==========================================
     [ConsoleCommand("ping", "")]
     private static void Ping(params string[] args)
     {
         if (args.Length <= 1)
         {
-            Warn<char>("Help: ping help or ping ?");
+            Warn("Help: ping help or ping ?"u8);
             return;
         }
 
@@ -56,7 +53,7 @@ public static class NetworkSkills
 
             if (!IPAddress.TryParse(startHost, out var startIp) || !IPAddress.TryParse(endHost, out var endIp))
             {
-                Error<char>("Invalid start or end IP address.");
+                Error("Invalid start or end IP address."u8);
                 return;
             }
 
@@ -65,7 +62,7 @@ public static class NetworkSkills
 
             if (startUint > endUint)
             {
-                Error<char>("Start IP must be less than or equal to end IP.");
+                Error("Start IP must be less than or equal to end IP."u8);
                 return;
             }
 
@@ -101,10 +98,10 @@ public static class NetworkSkills
     [ConsoleCommand("ping ?", "")]
     private static void PingHelp()
     {
-        Info<char>("Usage: ping <host> <count>");
-        Info<char>("       ping <start_ip> <end_ip> <count>");
-        Info<char>("Example: ping 192.168.1.1 4");
-        Info<char>("         ping 192.168.1.1 192.168.1.100 1");
+        Info("Usage: ping <host> <count>"u8);
+        Info("       ping <start_ip> <end_ip> <count>"u8);
+        Info("Example: ping 192.168.1.1 4"u8);
+        Info("         ping 192.168.1.1 192.168.1.100 1"u8);
     }
 
     private static void PrintReplyCore(PingReply reply, ReadOnlySpan<char> displayIp)
@@ -148,15 +145,12 @@ public static class NetworkSkills
         return new IPAddress(bytes);
     }
 
-    // ==========================================
-    // TCP PING & PORT SCANNER
-    // ==========================================
     [ConsoleCommand("tcpping", "")]
     private static void TcpPing(params string[] args)
     {
         if (args.Length < 2)
         {
-            Warn<char>("Help: tcpping help or tcpping ?");
+            Warn("Help: tcpping help or tcpping ?"u8);
             return;
         }
 
@@ -180,14 +174,14 @@ public static class NetworkSkills
     {
         if (args.Length < 3)
         {
-            Warn<char>("Help: tcpping help or tcpping ?");
+            Warn("Help: tcpping help or tcpping ?"u8);
             return;
         }
 
         var host = args[0];
         if (!int.TryParse(args[1], out int startPort) || !int.TryParse(args[2], out int endPort))
         {
-            Error<char>("Invalid start or end port.");
+            Error("Invalid start or end port."u8);
             return;
         }
 
@@ -199,7 +193,7 @@ public static class NetworkSkills
 
         if (startPort > endPort || startPort <= 0 || endPort > 65535)
         {
-            Error<char>("Invalid port range. Ports must be between 1 and 65535.");
+            Error("Invalid port range. Ports must be between 1 and 65535."u8);
             return;
         }
 
@@ -214,10 +208,10 @@ public static class NetworkSkills
     [ConsoleCommand("tcpping ?", "")]
     private static void TcpPingHelp()
     {
-        Info<char>("Usage: tcpping <host> <port1> [port2] [port3] ...");
-        Info<char>("       tcpping scan <host> <start_port> <end_port> [timeoutMs]");
-        Info<char>("Example: tcpping 192.168.1.1 80 443 8080");
-        Info<char>("         tcpping scan 192.168.1.1 1 1024 1000");
+        Info("Usage: tcpping <host> <port1> [port2] [port3] ..."u8);
+        Info("       tcpping scan <host> <start_port> <end_port> [timeoutMs]"u8);
+        Info("Example: tcpping 192.168.1.1 80 443 8080"u8);
+        Info("         tcpping scan 192.168.1.1 1 1024 1000"u8);
     }
 
     private static void CheckPortCore(string host, int port, int timeoutMs)
