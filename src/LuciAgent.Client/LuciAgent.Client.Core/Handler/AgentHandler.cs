@@ -19,29 +19,31 @@ public class AgentHandler : RouteHandler
     [HttpGet("")]
     private void GetAgent([Data] RequestModel res, [Session] SessionTransport ss)
     {
-        //using var response = Rent<ResponseModel>().MakeGetResponse(res);
-        //ss.SendAsync<byte>(response);
+        using var response = Rent<ResponseModel>().MakeOkResponse(200);
+        ss.SendAsync<byte>(response);
     }
 
     [HttpPost("")]
     private void PostAgent([Data] RequestModel res, [Session] SessionTransport ss)
     {
-        //using var response = Rent<ResponseModel>().MakePostResponse(res);
-        //ss.SendAsync<byte>(response);
+        Info<char>(res.ToString());
+
+        using var response = Rent<ResponseModel>().MakeOkResponse(200);
+        ss.SendAsync<byte>(response);
     }
 
     [HttpPut("")]
     private void PutAgent([Data] RequestModel res, [Session] SessionTransport ss)
     {
-        //using var response = Rent<ResponseModel>().MakePutResponse(res);
-        //ss.SendAsync<byte>(response);
+        using var response = Rent<ResponseModel>().MakeOkResponse(200);
+        ss.SendAsync<byte>(response);
     }
 
     [HttpDelete("")]
     private void DeleteAgent([Data] RequestModel res, [Session] SessionTransport ss)
     {
-        //using var response = Rent<ResponseModel>().MakeDeleteResponse(res);
-        //ss.SendAsync<byte>(response);
+        using var response = Rent<ResponseModel>().MakeOkResponse(200);
+        ss.SendAsync<byte>(response);
     }
 
     [HttpHead("")]
