@@ -1,24 +1,25 @@
 ﻿using LuciferCore.Model;
 using LuciferCore.NetCoreServer.Client;
+using LuciferCore.NetCoreServer.Transport.SSL;
 using System.Net;
 
 namespace LuciAgent.Client.Core.Core;
 
-public class AgentClient : WsClient
+public class AgentsClient : WssClient
 {
-    public AgentClient(DnsEndPoint endpoint) : base(endpoint)
+    public AgentsClient(SslContext context, DnsEndPoint endpoint) : base(context, endpoint)
     {
     }
 
-    public AgentClient(IPEndPoint endpoint) : base(endpoint)
+    public AgentsClient(SslContext context, IPEndPoint endpoint) : base(context, endpoint)
     {
     }
 
-    public AgentClient(IPAddress address, int port) : base(address, port)
+    public AgentsClient(SslContext context, IPAddress address, int port) : base(context, address, port)
     {
     }
 
-    public AgentClient(string hostOrAddress, int port = 80) : base(hostOrAddress, port)
+    public AgentsClient(SslContext context, string hostOrAddress, int port = 443) : base(context, hostOrAddress, port)
     {
     }
 
