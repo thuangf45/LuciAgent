@@ -4,13 +4,14 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 
 namespace LuciAgent.Client.Core.Skills;
 
 public static class NetworkSkills
 {
     [ConsoleCommand("ping", "")]
-    private static void Ping(params string[] args)
+    private static async Task Ping(params string[] args)
     {
         if (args.Length <= 1)
         {
@@ -23,25 +24,16 @@ public static class NetworkSkills
         if (args.Length == 2)
         {
             var hostOrAddress = args[0];
-            var count = int.TryParse(args[1], out int result) ? result : 4;
+            var count = int.TryParse(args[1], out int c) ? c : 4;
 
-            for (int i = 0; i < count; i++)
+            IPAddress? targetIp = await ResolveIpAsync(hostOrAddress);
+            if (targetIp == null)
             {
-                try
-                {
-                    PingReply reply = ping.SendPingAsync(hostOrAddress, 1000).Result;
-
-                    string displayIp = (reply.Status == IPStatus.Success && reply.Address != null && !reply.Address.Equals(IPAddress.Any))
-                        ? reply.Address.ToString()
-                        : hostOrAddress;
-
-                    PrintReplyCore(reply, displayIp);
-                }
-                catch (Exception ex)
-                {
-                    Error<char>($"Ping error to {hostOrAddress}: {ex.Message}");
-                }
+                Error<char>($"Could not resolve host: {hostOrAddress}");
+                return;
             }
+
+            await PingTargetAsync(ping, targetIp, count);
             return;
         }
 
@@ -49,11 +41,17 @@ public static class NetworkSkills
         {
             var startHost = args[0];
             var endHost = args[1];
-            var count = int.TryParse(args[2], out int result) ? result : 1;
+            var count = int.TryParse(args[2], out int c) ? c : 1;
 
             if (!IPAddress.TryParse(startHost, out var startIp) || !IPAddress.TryParse(endHost, out var endIp))
             {
                 Error("Invalid start or end IP address."u8);
+                return;
+            }
+
+            if (startIp.AddressFamily != AddressFamily.InterNetwork || endIp.AddressFamily != AddressFamily.InterNetwork)
+            {
+                Error("Range scanning is only supported for IPv4 addresses."u8);
                 return;
             }
 
@@ -66,30 +64,46 @@ public static class NetworkSkills
                 return;
             }
 
-            Span<char> ipBuf = stackalloc char[45];
-
             for (uint current = startUint; current <= endUint; current++)
             {
                 var targetIp = UintToIp(current);
-                for (int i = 0; i < count; i++)
-                {
-                    try
-                    {
-                        PingReply reply = ping.SendPingAsync(targetIp, 1000).Result;
+                await PingTargetAsync(ping, targetIp, count);
+            }
+        }
+    }
 
-                        var ipToDisplay = (reply.Status == IPStatus.Success && reply.Address != null && !reply.Address.Equals(IPAddress.Any))
-                            ? reply.Address
-                            : targetIp;
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static async Task<IPAddress?> ResolveIpAsync(string hostOrAddress)
+    {
+        if (IPAddress.TryParse(hostOrAddress, out var ip))
+            return ip;
 
-                        ipToDisplay.TryFormat(ipBuf, out int written);
+        try
+        {
+            var addresses = await Dns.GetHostAddressesAsync(hostOrAddress);
+            return addresses.Length > 0 ? addresses[0] : null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
 
-                        PrintReplyCore(reply, ipBuf.Slice(0, written));
-                    }
-                    catch (Exception ex)
-                    {
-                        Error<char>($"Ping error to {targetIp}: {ex.Message}");
-                    }
-                }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static async Task PingTargetAsync(Ping ping, IPAddress targetIp, int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            try
+            {
+                PingReply reply = await ping.SendPingAsync(targetIp, 1000);
+                PrintReplyCore(reply, targetIp);
+            }
+            catch (Exception ex)
+            {
+                using var b = Rent<Utf8Builder>();
+                b.Append("Ping error to "u8).Append(targetIp).Append(": "u8).Append<char>(ex.Message);
+                Error(b.Span);
             }
         }
     }
@@ -101,20 +115,27 @@ public static class NetworkSkills
         Info("Usage: ping <host> <count>"u8);
         Info("       ping <start_ip> <end_ip> <count>"u8);
         Info("Example: ping 192.168.1.1 4"u8);
+        Info("         ping 2001:4860:4860::8888 4"u8);
         Info("         ping 192.168.1.1 192.168.1.100 1"u8);
     }
 
-    private static void PrintReplyCore(PingReply reply, ReadOnlySpan<char> displayIp)
+    private static void PrintReplyCore(PingReply reply, IPAddress fallbackIp)
     {
         using var builder = Rent<Utf8Builder>();
+
+        var displayIp = (reply.Status == IPStatus.Success && reply.Address != null &&
+                         !reply.Address.Equals(IPAddress.Any) && !reply.Address.Equals(IPAddress.IPv6Any))
+            ? reply.Address
+            : fallbackIp;
+
+        builder.Append("Reply from "u8).Append(displayIp);
 
         if (reply.Status == IPStatus.Success)
         {
             int bytes = reply.Buffer?.Length ?? 32;
             int ttl = reply.Options?.Ttl ?? 0;
 
-            builder.Append("Reply from "u8).Append<char>(displayIp)
-                .Append(": bytes="u8).Append(bytes)
+            builder.Append(": bytes="u8).Append(bytes)
                 .Append(" time="u8).Append(reply.RoundtripTime)
                 .Append("ms TTL="u8).Append(ttl);
 
@@ -122,13 +143,12 @@ public static class NetworkSkills
         }
         else
         {
-            builder.Append("Reply from "u8).Append<char>(displayIp)
-                .Append(": "u8).Append<char>(reply.Status.ToString());
-
+            builder.Append(": "u8).Append<char>(reply.Status.ToString());
             Error(builder.Span);
         }
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static uint IpToUint(IPAddress ip)
     {
         byte[] bytes = ip.GetAddressBytes();
@@ -137,6 +157,7 @@ public static class NetworkSkills
         return BitConverter.ToUInt32(bytes, 0);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static IPAddress UintToIp(uint value)
     {
         byte[] bytes = BitConverter.GetBytes(value);
@@ -146,7 +167,7 @@ public static class NetworkSkills
     }
 
     [ConsoleCommand("tcpping", "")]
-    private static void TcpPing(params string[] args)
+    private static async Task TcpPing(params string[] args)
     {
         if (args.Length < 2)
         {
@@ -160,7 +181,7 @@ public static class NetworkSkills
         {
             if (int.TryParse(args[i], out int port))
             {
-                CheckPortCore(host, port, 2000);
+                await CheckPortCoreAsync(host, port, 2000);
             }
             else
             {
@@ -170,7 +191,7 @@ public static class NetworkSkills
     }
 
     [ConsoleCommand("tcpping scan", "")]
-    private static void TcpPingScan(params string[] args)
+    private static async Task TcpPingScan(params string[] args)
     {
         if (args.Length < 3)
         {
@@ -200,7 +221,7 @@ public static class NetworkSkills
         Info<char>($"Scanning {host} from port {startPort} to {endPort}...");
         for (int port = startPort; port <= endPort; port++)
         {
-            CheckPortCore(host, port, timeoutMs);
+            await CheckPortCoreAsync(host, port, timeoutMs);
         }
     }
 
@@ -214,24 +235,23 @@ public static class NetworkSkills
         Info("         tcpping scan 192.168.1.1 1 1024 1000"u8);
     }
 
-    private static void CheckPortCore(string host, int port, int timeoutMs)
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static async Task CheckPortCoreAsync(string host, int port, int timeoutMs)
     {
         using var client = new TcpClient();
+        using var cts = new CancellationTokenSource(timeoutMs);
         var sw = Stopwatch.StartNew();
         bool isOpen = false;
         string? errorMsg = null;
 
         try
         {
-            var connectTask = client.ConnectAsync(host, port);
-            if (connectTask.Wait(timeoutMs))
-            {
-                isOpen = true;
-            }
-            else
-            {
-                errorMsg = "TimedOut";
-            }
+            await client.ConnectAsync(host, port, cts.Token);
+            isOpen = true;
+        }
+        catch (OperationCanceledException)
+        {
+            errorMsg = "TimedOut";
         }
         catch
         {
