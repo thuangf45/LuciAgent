@@ -86,6 +86,11 @@ public class APISKill
         {
             request.SetBody<byte>(bodyBuilder.Span);
         }
+        else
+        {
+            request.SetBody();
+        }
+
 
         if (isSecure)
         {
@@ -104,7 +109,7 @@ public class APISKill
 
     [ConsoleCommand("api help")]
     [ConsoleCommand("api ?")]
-    private static void APIHelp(params string[] args)
+    private static void APIHelp()
     {
         Info("API Command Help:"u8);
         Info("Usage: api <method> <url> [-h <header1:val1> <header2:val2> ...] [-d <body...>]"u8);
@@ -116,7 +121,7 @@ public class APISKill
 
     [ConsoleCommand("api-secure help")]
     [ConsoleCommand("api-secure ?")]
-    private static void APISecureHelp(params string[] args)
+    private static void APISecureHelp()
     {
         Info("API Secure Command Help:"u8);
         Info("Usage: api-secure <method> <url> [-h <header1:val1> <header2:val2> ...] [-d <body...>]"u8);
