@@ -3,6 +3,7 @@ using LuciferCore.Attributes;
 using LuciferCore.Model;
 using LuciferCore.NetCoreServer.Transport.SSL;
 using LuciferCore.Utf8;
+using System.Runtime.CompilerServices;
 using System.Security.Authentication;
 
 namespace LuciAgent.Client.Core.Skills;
@@ -15,6 +16,7 @@ public class APISKill
     [ConsoleCommand("api-secure")]
     private static void APISecure(params string[] args) => ExecuteRequest(isSecure: true, args);
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static void ExecuteRequest(bool isSecure, string[] args)
     {
         if (args.Length < 2)
