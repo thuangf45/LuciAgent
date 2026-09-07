@@ -13,9 +13,26 @@ public class AgentService
         _agent = agent;
     }
 
-    public void JoinNetwork(ResponseModel response)
+    //public void JoinNetwork(ResponseModel response)
+    //{
+    //    //_agent.JoinNetwork();
+    //}
+
+    public ResponseModel Handle(RequestModel request)
     {
-        //_agent.JoinNetwork();
+        var response = Rent<ResponseModel>();
+
+        try
+        {
+            CMD(request.BodySpan);
+            response.MakeOkResponse(200);
+        }
+        catch (Exception ex)
+        {
+            response.MakeErrorResponse<char>(500, ex.Message);
+        }
+
+        return response;
     }
 
 }

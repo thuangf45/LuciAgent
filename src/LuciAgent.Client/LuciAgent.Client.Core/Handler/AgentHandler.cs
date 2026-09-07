@@ -26,9 +26,8 @@ public class AgentHandler : RouteHandler
     [HttpPost("")]
     private void PostAgent([Data] RequestModel res, [Session] SessionTransport ss)
     {
-        Info<char>(res.ToString());
-
-        using var response = Rent<ResponseModel>().MakeOkResponse(200);
+        //Info<char>(res.ToString());
+        using var response = _agentService.Handle(res);
         ss.SendAsync<byte>(response);
     }
 
