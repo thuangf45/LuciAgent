@@ -1,5 +1,4 @@
 using LuciferCore.Attributes;
-using LuciferCore.Main;
 using LuciferCore.Utf8;
 
 namespace LuciAgent.Server.Database;
@@ -43,7 +42,7 @@ public static class DBConfig
             return string.Empty;
         }
 
-        using var builder = Lucifer.Rent<Utf8Builder>();
+        using var builder = Rent<Utf8Builder>();
 
         switch (provider.ToLowerInvariant())
         {

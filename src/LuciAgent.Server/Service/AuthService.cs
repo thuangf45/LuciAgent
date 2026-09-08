@@ -1,6 +1,5 @@
 ﻿using LuciAgent.Server.Core;
 using LuciferCore.Attributes;
-using LuciferCore.Main;
 using LuciferCore.Model;
 using System.Runtime.CompilerServices;
 
@@ -13,7 +12,7 @@ public class AuthService
     public ResponseModel Login(AppSession session, RequestModel request)
     {
         // Create a response model
-        var response = Lucifer.Rent<ResponseModel>();
+        var response = Rent<ResponseModel>();
 
         // Implement your login logic here
         // For example, validate the request data, check credentials, etc.
@@ -25,7 +24,7 @@ public class AuthService
     public ResponseModel Register(AppSession session, RequestModel request)
     {
         // Create a response model
-        var response = Lucifer.Rent<ResponseModel>();
+        var response = Rent<ResponseModel>();
 
         // Implement your registration logic here
         // For example, validate the request data, create a new user, etc.
@@ -38,7 +37,7 @@ public class AuthService
     public ResponseModel Logout(AppSession session, RequestModel request)
     {
         // Create a response model
-        var response = Lucifer.Rent<ResponseModel>();
+        var response = Rent<ResponseModel>();
 
         // Implement your logout logic here
         // For example, invalidate the session, clear cookies, etc.

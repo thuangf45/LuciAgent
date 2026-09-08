@@ -1,5 +1,4 @@
-﻿using LuciferCore.Main;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LuciAgent.Server.Database;
@@ -22,7 +21,7 @@ public class AppDBContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         // Scan for entity types with the TableAttribute and cache them for performance.
-        _cachedEntityTypes ??= Lucifer.GetTypesWithAttribute<TableAttribute>();
+        _cachedEntityTypes ??= GetTypesWithAttribute<TableAttribute>();
 
         foreach (var type in _cachedEntityTypes)
         {

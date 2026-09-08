@@ -2,7 +2,6 @@
 using LuciferCore.Attributes;
 using LuciferCore.Extensions;
 using LuciferCore.Handler;
-using LuciferCore.Main;
 using LuciferCore.Model;
 
 namespace LuciAgent.Client.Core.Handler;
@@ -14,7 +13,7 @@ public class HomeHandler : RouteHandler
     private void Ping([Session] AgentSession session, [Data] RequestModel request)
     {
         // Build a custom response using the MakeCustomResponse method
-        using var response = Lucifer.Rent<ResponseModel>().MakeCustomResponse<char, char, char>
+        using var response = Rent<ResponseModel>().MakeCustomResponse<char, char, char>
             (
                 200, // Status code
                 "HTTP/1.1", // Protocol version
